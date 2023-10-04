@@ -48,18 +48,6 @@ jobs:
         id: commit_sha
         run: echo "short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
-      - name: Build and push Docker images
-        uses: docker/build-push-action@v5
-        with:
-          context: ./.devcontainer
-          platforms: linux/amd64
-          build-args: |
-            GHC_VERSION=9.4.7
-            STACK_RESOLVER=lts-21.14
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository }}:${{ steps.commit_sha.outputs.short }}-amd64
-          labels: ${{ steps.meta.outputs.labels }}
 
 
   push_to_registries_arm64:
@@ -96,18 +84,6 @@ jobs:
         id: commit_sha
         run: echo "short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
-      - name: Build and push Docker images
-        uses: docker/build-push-action@v5
-        with:
-          context: ./.devcontainer
-          platforms: linux/arm64
-          build-args: |
-            GHC_VERSION=9.4.7
-            STACK_RESOLVER=lts-21.14
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository }}:${{ steps.commit_sha.outputs.short }}-arm64
-          labels: ${{ steps.meta.outputs.labels }}
 
 
   push_multi_arch_manifest:
