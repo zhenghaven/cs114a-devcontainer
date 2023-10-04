@@ -61,6 +61,7 @@ jobs:
             ghcr.io/${{ github.repository }}:${{ steps.commit_sha.outputs.short }}-amd64
           labels: ${{ steps.meta.outputs.labels }}
 
+
   push_to_registries_arm64:
     name: Push Docker image to Container registry (arm64)
     runs-on: macos-13-xl
