@@ -56,7 +56,7 @@ jobs:
 
   push_to_registries_arm64:
     name: Push Docker image to Container registry (arm64)
-    runs-on: macos-13
+    runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
